@@ -1,13 +1,8 @@
 package com.itwill.jsp2.dto;
 
-import com.itwill.jsp2.domain.User;
-import com.itwill.jsp2.dto.UserSignUpDto.UserSignUpDtoBuilder;
-
 public class UserSignInDto {
 	private String userid;
 	private String password;
-	
-	// TODO !!!
 	
 	public UserSignInDto() {}
 
@@ -64,10 +59,5 @@ public class UserSignInDto {
 		}
 	}
 	
-//	// UserSignInDto 타입의 객체를 User 타입 객체로 변환해서 리턴하는 메서드.
-//	//-> Service 계층에서 Repository 계층의 메서드를 호출할 때 사용.
-//	public User toUser() {
-//		return new User(null, userid, password, password, null);
-//	}
 	
 }
