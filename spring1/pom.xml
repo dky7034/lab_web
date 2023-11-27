@@ -80,7 +80,15 @@
 			<artifactId>HikariCP</artifactId>
 			<version>5.1.0</version>
 		</dependency>
-
+		
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>
+			<scope>compile</scope> <!-- 프로젝트를 컴파일할 때만 사용 -->
+		</dependency>
+		
 	</dependencies>
 
 	<build>
