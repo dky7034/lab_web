@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 마이바티스(MyBatis) 프레임워크에서 사용하는 SQL 매퍼 파일 -->
+
+<!-- POSTS 테이블에서 CRUD에 필요한 SQL 문장들을 선언 -->
+<!-- namespace: 매퍼 파일에 정의된 SQL 문장들이 어떤 인터페이스와 연결되는지를 지정 -->
+<!-- namespace: 매퍼 파일에 정의된 SQL 문장들이 연결되는 인터페이스의 패키지 경로와 클래스 이름 지정 -->
+<mapper namespace="com.itwill.spring2.repository.CommentDao">
+
+	<!-- 특정 포스트에 달려 있는 모든 댓글 검색(아이디 내림차순). -->
+	<select id="selectByPostId" resultType="Comment"> <!-- DB에서 select 시 반환되는 값의 타입 설정 -->
+	<!-- -> mybatis-config 확인 -->
+		select * from COMMENTS 
+		where POSTID = #{postid} 
+		order by ID desc
+	</select>
+	
+	<!-- 특정 포스트에 새 댓글을 추가. -->
+	<insert id="insert">
+		insert into COMMENTS (POSTID, WRITER, CTEXT)
+		values (#{postid}, #{writer}, #{ctext})
+	</insert>
+	
+	<!-- 댓글 삭제 1: PK(id)로 찾아서 1개의 댓글을 삭제 -->
+	<delete id="deleteById">
+		delete from COMMENTS where ID = #{id}
+	</delete>
+	
+	<!-- 댓글 삭제 2: 특정 포스트에 달려 있는 모든 댓글 삭제 -->
+	<delete id="deleteByPostId">
+		delete from COMMENTS where POSTID = #{postid}
+	</delete>
+	
+	<!-- 댓글 수정: 특정 댓글 아이디(PK)의 댓글 내용과 수정 시간을 업데이트 -->
+	<update id="update">
+		update COMMENTS 
+		set CTEXT = #{ctext}, MODIFIED_TIME = systimestamp
+		where ID = #{id}
+	</update>
+	
+	<!-- 특정 포스트에 달려 있는 댓글 개수를 검색 -->
+	<select id="selectCommentCounts" resultType="java.lang.Long">
+		select count(id) from COMMENTS 
+		where POSTID = #{postid}
+	</select>
+	
+	<!-- 댓글 아이디(PK)로 검색하기 -->
+	<select id="selectById" resultType="Comment">
+		select * from COMMENTS where ID = #{id}
+	</select>
+	
+</mapper>

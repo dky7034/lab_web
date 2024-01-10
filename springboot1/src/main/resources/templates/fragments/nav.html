@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Insert title here</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+			rel="stylesheet" 
+			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+			crossorigin="anonymous" />
+	</head>
+	<body>
+		
+		<nav>
+			<ul>
+				<li>
+					<a th:href="@{/}">메인 페이지</a>
+				</li>
+				<li>
+					<!-- 질의문자열(query string)을 포함하는 URL 작성 방법 -->
+					<a th:href="@{/book(id=2)}">책 상세 페이지 1</a> <!-- http://localhost:8081/book?id=1 주소 출력됨 -->
+				</li>
+				<li>
+					<!-- path variable을 포함하는 URL 작성 방법 -->
+					<a th:href="@{/book/} + 1">책 상세 페이지 2</a> <!-- http://localhost:8081/book/1 주소 출력됨 -->
+				</li>
+				<li>
+					<a th:href="@{/books/list}">책 리스트</a>
+				</li>
+			</ul>
+		</nav>
+		
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+			integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+			crossorigin="anonymous"></script>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    
+    <!-- Spring MVC 설정들을 애너테이션 기반으로 설정할 수 있도록 -->
+    <mvc:annotation-driven>
+    	<!-- HTML 형식의 텍스트 데이터를 UTF-8 문자 인코딩으로 처리하기 위한 코드 -->
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    
+    <!-- Spring MVC에서 dispatcherServlet이 처리하지 않는 정적 요청에 필요한 파일들.
+    (image, css, javascript, ...)이 있는 폴더 위치를 설정.
+    정적 리소스(이미지, CSS, JS)의 폴더를 /webapp/static 폴더 아래에 생성. -->
+    <mvc:resources location="/static/" mapping="/**" />
+    
+    <!-- 뷰 리졸버(view resolver): Spring MVC에서 사용하는 뷰(예: jsp)를 찾기 위한 설정. -->
+    <!-- View Resolver는 Spring Framework에서 View 이름을 실제 View 객체로 매핑하는 데 사용되는 인터페이스 -->
+    <!-- InternalResourceViewResolver는 Spring Framework에서 ViewResolver 인터페이스를 구현한 클래스 중 하나입니다. 
+    이 클래스는 JSP와 같은 내부 리소스를 사용하여 뷰를 렌더링합니다.
+    즉, 컨트롤러에서 반환된 뷰 이름을 기반으로 JSP 파일을 찾아 렌더링합니다. 
+    이를 위해 InternalResourceViewResolver는 prefix와 suffix를 사용하여 뷰 이름에 해당하는 JSP 파일의 경로를 결정합니다. 
+    예를 들어, prefix가 "/WEB-INF/views/"이고 suffix가 ".jsp"인 경우, "home"이라는 뷰 이름은 "/WEB-INF/views/home.jsp" 파일에 해당됩니다. 
+    InternalResourceViewResolver는 기본적으로 Spring MVC의 설정 파일에 등록되어 있으며, 개발자는 이를 구성하여 사용할 수 있습니다. -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    
+    <!-- 컨트롤러 클래스들을 작성하는 패키지 이름 설정. 
+    특정 패키지 아래에 컨트롤러 애너테이션(@Controller, @RestController, ...)이 사용된 클래스들을
+    디스패쳐 서블릿이 생성하고 관리하도록 하기 위한 설정. -->
+    <!-- 컴포넌트들을 스캔하는 기능 수행 -->
+    <context:component-scan base-package="com.itwill.spring2.web" />
+    
+</beans>

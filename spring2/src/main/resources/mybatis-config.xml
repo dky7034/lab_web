@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- DOCTYPE 선언부: 이 문서의 DTD(Document Type Definition)을 정의.
+	 여기서는 MyBatis 3.0의 설정 DTD를 사용.
+-->
+
+<!-- MyBatis3 프레임워크 설정 -->
+<!-- MyBatis3 프레임워크의 설정 파일을 정의하는 XML 문서 -->
+<!-- 이 코드는 MyBatis3를 사용하여 데이터베이스와 상호작용하는 
+애플리케이션에서 사용되는 객체들의 별칭을 설정하는 부분입니다. 
+이를 통해 MyBatis3는 SQL 매핑과 관련된 작업을 더 쉽게 수행할 수 있습니다. -->
+
+<configuration>
+<!-- configuration: MyBatis3의 프레임워크 설정을 정의하는 최상위 요소 -->
+
+	<!-- mapper 파일의 resultType 속성 값으로 사용하기 위한 별명들 -->
+    <typeAliases>
+    <!-- typeAliases: 자바 객체와 그에 대한 별칭을 지정하는 요소 -->
+        <typeAlias type="com.itwill.spring2.domain.Post" alias="Post" />
+        <!-- com.itwill.spring2.domain.Post 클래스를 Post 별칭으로 지정 -->
+        <typeAlias type="com.itwill.spring2.domain.Comment" alias="Comment"/>
+        <!-- com.itwill.spring2.domain.Comment 클래스를 Comment 별칭으로 지정 -->
+        <typeAlias type="com.itwill.spring2.domain.User" alias="User"/>
+        <!-- com.itwill.spring2.domain.User 클래스를 User 별칭으로 지정 -->
+		<!-- !!! 이렇게 정의된 별칭(alias)은 MyBatis3 프레임워크에서
+			 SQL 매핑을 수행하는 XML 파일에서 사용됨 !!! -->
+    </typeAliases>
+
+</configuration>

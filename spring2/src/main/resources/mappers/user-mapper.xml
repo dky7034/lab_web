@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 마이바티스(MyBatis) 프레임워크에서 사용하는 SQL 매퍼 파일 -->
+
+<!-- POSTS 테이블에서 CRUD에 필요한 SQL 문장들을 선언 -->
+<!-- namespace: 매퍼 파일에 정의된 SQL 문장들이 어떤 인터페이스와 연결되는지를 지정 -->
+<!-- namespace: 매퍼 파일에 정의된 SQL 문장들이 연결되는 인터페이스의 패키지 경로와 클래스 이름 지정 -->
+<mapper namespace="com.itwill.spring2.repository.UserDao">
+
+	<!-- 아이디 중복 체크 -->
+	<select id="selectByUserid" resultType="User"> <!-- DB에서 select 시 반환되는 값의 타입 설정 -->
+		select * from USERS where USERID = #{userid}
+	</select>
+	
+    <!-- 회원 가입 -->
+    <insert id="insert">
+        insert into USERS (USERID, PASSWORD, EMAIL)
+        values (#{userid}, #{password}, #{email})
+    </insert>
+	
+	<!-- 로그인 -->
+	<select id="selectByUseridAndPassword" resultType="User"> <!-- DB에서 select 시 반환되는 값의 타입 설정 -->
+		select * from USERS 
+		where USERID = #{userid} and PASSWORD = #{password}
+	</select>
+	<!-- DB에서 조회된 각 행은 User 객체의 인스턴스로 매핑되어 리스트 형태로 반환됨. -->
+	
+</mapper>
