@@ -41,7 +41,7 @@ if (color.equals("r")) {
 				color: <%= colorValue %>;
 			}
 			span#s2 {
-				color: ${colVal}; /* JSTL에서 c:set 태그로 만든 변수 colVal */
+				color: ${colVal}; <%-- JSTL에서 c:set 태그로 만든 변수 colVal --%>
 			}
 		</style>
 	</head>

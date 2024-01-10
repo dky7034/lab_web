@@ -40,7 +40,7 @@
                             <a class="nav-link" href="${postCreate}">새 포스트</a>
                         </li>
                         <%-- 세션에 signedInUser 속성이 있으면(로그인되어 있으면) --%>
-                        <c:if test="${not empty signedInUser}"> <%-- UserSignInController.java의 signedInUser --%>
+                        <c:if test="${not empty signedInUser}">
                             <li class="nav-item">
                                 <c:url var="signOutPage" value="/user/signout" />
                                 <a class="nav-link" href="${signOutPage}">
@@ -49,7 +49,7 @@
                             </li>
                         </c:if>
                         <%-- 세션에 signedInUser 속성이 없으면(로그인되이 있지 않으면) --%>
-                        <c:if test="${empty signedInUser}"> <%-- UserSignInController.java의 signedInUser --%>
+                        <c:if test="${empty signedInUser}">
                             <li class="nav-item">
                                 <c:url var="signInPage" value="/user/signin" />
                                 <a class="nav-link" href=${signInPage}>로그인</a>
@@ -77,8 +77,8 @@
                             <textarea class="form-control"
                                 name="content" rows="5" cols="80" placeholder="내용" required></textarea>
                         </div>
-                        <%-- d-none: 요소는 생성되지만 하면에서는 보이지 않음.
-                        	 작성자 input의 value를 로그인한 사용자 아이디로 채움.
+                        <%-- d-none: 요소는 생성되지만 화면에서는 보이지 않음. 
+                             작성자 input의 value를 로그인한 사용자 아이디로 채움.
                         --%>
                         <div class="my-2 d-none">
                             <input class="form-control"

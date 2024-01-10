@@ -6,63 +6,62 @@ import com.itwill.jsp2.domain.Post;
 
 // 포스트 목록 페이지에서 테이블의 행에 사용되는 데이터 클래스.
 public class PostListItemDto {
-	private Long id;
-	private String title;
-	private String author;
-	private LocalDateTime modifiedTime;
-	
-	public PostListItemDto() {}
+    private Long id;
+    private String title;
+    private String author;
+    private LocalDateTime modifiedTime;
 
-	public PostListItemDto(Long id, String title, String author, LocalDateTime modifiedTime) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.author = author;
-		this.modifiedTime = modifiedTime;
-	}
+    public PostListItemDto() {}
 
-	public Long getId() {
-		return id;
-	}
+    public PostListItemDto(Long id, String title, String author, LocalDateTime modifiedTime) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.modifiedTime = modifiedTime;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getAuthor() {
-		return author;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setAuthor(String author) {
-		this.author = author;
-	}
+    public String getAuthor() {
+        return author;
+    }
 
-	public LocalDateTime getModifiedTime() {
-		return modifiedTime;
-	}
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 
-	public void setModifiedTime(LocalDateTime modifiedTiem) {
-		this.modifiedTime = modifiedTiem;
-	}
+    public LocalDateTime getModifiedTime() {
+        return modifiedTime;
+    }
 
-	@Override
-	public String toString() {
-		return "PostListItemDto [id=" + id + ", title=" + title + ", author=" + author + ", modifiedTiem="
-				+ modifiedTime + "]";
-	}
-	
-	// Post 타입 객체를 PostListItemDto 객체로 변환해서 리턴하는 메서드 (static 사용!)
-	// static 사용 이유: TODO
-	public static PostListItemDto fromPost(Post post) {
-		return new PostListItemDto(post.getId(), post.getTitle(), post.getAuthor(), post.getModifiedTime());
-	}
-	
+    public void setModifiedTime(LocalDateTime modifiedTime) {
+        this.modifiedTime = modifiedTime;
+    }
+
+    @Override
+    public String toString() {
+        return "PostListItemDto [id=" + id + ", title=" + title + ", author=" + author + ", modifiedTime="
+                + modifiedTime + "]";
+    }
+    
+    // Post 타입 객체를 PostListItemDto 객체로 변환해서 리턴하는 메서드
+    public static PostListItemDto fromPost(Post post) {
+        return new PostListItemDto(post.getId(), post.getTitle(), post.getAuthor(), 
+                post.getModifiedTime());
+    }
+    
 }

@@ -40,7 +40,7 @@
                             <a class="nav-link" href="${postCreate}">새 포스트</a>
                         </li>
                         <%-- 세션에 signedInUser 속성이 있으면(로그인되어 있으면) --%>
-                        <c:if test="${not empty signedInUser}"> <%-- UserSignInController.java의 signedInUser --%>
+                        <c:if test="${not empty signedInUser}">
                             <li class="nav-item">
                                 <c:url var="signOutPage" value="/user/signout" />
                                 <a class="nav-link" href="${signOutPage}">
@@ -48,8 +48,8 @@
                                 </a>
                             </li>
                         </c:if>
-                        <%-- 세션에 signedInUser 속성이 없으면(로그인되이 있지 않으면) --%>
-                        <c:if test="${empty signedInUser}"> <%-- UserSignInController.java의 signedInUser --%>
+                        <%-- 세션에 signedInUser 속성이 없으면(로그인되어 있지 않으면) --%>
+                        <c:if test="${empty signedInUser}">
                             <li class="nav-item">
                                 <c:url var="signInPage" value="/user/signin" />
                                 <a class="nav-link" href=${signInPage}>로그인</a>
@@ -88,13 +88,13 @@
                             type="text" value="${post.author}" readonly />
                     </div>
                 </form>
-                <%-- 로그인한 사용자 아이디와 포스트 작성자 아이디가 같은 경우에만
-                	 수정과 삭제가 가능하도록! --%>
+                <%-- 로그인한 사용자 아이디와 포스트 작성자 아이디가 같은 경우에만 
+                     수정과 삭제가 가능하도록 --%>
                 <c:if test="${signedInUser eq post.author}">
-	                <div class="card-footer">
-	                    <button id="btnDelete" class="btn btn-danger">삭제</button>
-	                    <button id="btnUpdate" class="btn btn-success">수정 완료</button>
-	                </div>
+                    <div class="card-footer">
+                        <button id="btnDelete" class="btn btn-danger">삭제</button>
+                        <button id="btnUpdate" class="btn btn-success">수정 완료</button>
+                    </div>
                 </c:if>
             </div>
         </main>

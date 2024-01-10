@@ -20,11 +20,12 @@ public class PostService {
     private static PostService instance = null;
     
     private final PostDao postDao;
-    private final UserDao userDao; // final로 선언된 변수는 "반드시 초기화"를 해야 함! (초기화 하지 않으면 null로 유지되므로...)
+    private final UserDao userDao;
     
-    // final로 선언된 필드(멤버 변수)는 반드시 명시적으로 초기화를 수행해야 함!
+    // final로 선언된 필드는 반드시 명시적으로 초기화를 수행해야 함!
     // (1) 필드를 선언하는 위치에서 초기화를 하거나,
     // (2) 생성자에서 초기화.
+    
     private PostService() {
         postDao = PostDao.getInstance();
         userDao = UserDao.getInstance();
@@ -38,12 +39,11 @@ public class PostService {
         return instance;
     }
     
-    // 포스트 목록 페이지에 포스트 목록을 전달하는 메서드.
     public List<PostListItemDto> read() {
         log.info("read()");
         
         // DAO의 메서드를 호출해서 DB POSTS 테이블에서 (아이디 내림차순) 전체 검색.
-        List<Post> list = postDao.select();
+        List<Post> list =  postDao.select();
         
         // List<Post>를 List<PostListItemDto>로 변환해서 컨트롤러에게 리턴.
         List<PostListItemDto> result = list.stream()
@@ -59,10 +59,10 @@ public class PostService {
         // PostCreateDto를 Post 타입으로 변환해서, PostDao의 메서드(insert)를 호출할 때 전달.
         int result = postDao.insert(dto.toPost());
         log.debug("insert result = {}", result);
-        // insert, delete, update 관련 구문에서는 반영된 레코드의 건수를 반환함(int)
-        if (result == 1) { // 새 포스트 작성을 성공하면,
-        	// 포스트 작성자에게 10 포인트를 지급.
-        	userDao.updatePoints(10, dto.getAuthor());
+        
+        if (result == 1) { // 새 포스트 작성을 성공하면, 
+            // 포스트 작성자에게 10 포인트를 지급.
+            userDao.updatePoints(10, dto.getAuthor());
         }
     }
     

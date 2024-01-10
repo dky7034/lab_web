@@ -55,11 +55,8 @@ public class PostDao {
             conn = ds.getConnection(); // 데이터 소스에서 커넥션 객체를 빌려옴.
             stmt = conn.prepareStatement(SQL_SELECT);
             log.debug(SQL_SELECT);
-            rs = stmt.executeQuery(); // DB의 데이터를 테이블(2차원 배열) 형식으로 저장한 인스턴스.
+            rs = stmt.executeQuery();
             while (rs.next()) { // ResultSet 현재 위치에 레코드가 있으면
-            	// rs.next(): ResultSet 커서를 다음 행으로 이동하는 메서드로 반환값은 boolean.
-            	// true 면 ResultSet 커서 위치의 처리행이 있는 경우의 반환값.
-            	// false 면 ResultSet 커서 위치의 처리행이 없는 경우의 반환값.
                 Post post = generatePostFromRS(rs);
                 list.add(post);
             }

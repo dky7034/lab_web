@@ -17,7 +17,8 @@
             <h1>메인 페이지</h1>
         </header>
         
-        <!-- 네비게이션 메뉴 -->
+        <!-- 내비게이션 메뉴 -->
+        <c:set var="targetURL" value="http://localhost:8081/jsp2" />
         <nav class="my-2 navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button"
@@ -28,42 +29,35 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                    
                         <li class="nav-item">
                             <a class="nav-link" href="#">홈</a>
                         </li>
-                        
                         <li class="nav-item">
                             <c:url var="postList" value="/post/list" />
-                            <%-- contextPath를 자동으로 붙여주는 URL 생성 --%>
                             <a class="nav-link" href="${postList}">포스트 목록</a>
                         </li>
-                        
                         <%-- 세션에 signedInUser 속성이 있으면(로그인되어 있으면) --%>
-                        <c:if test="${not empty signedInUser}"> <%-- UserSignInController.java의 signedInUser --%>
+                        <c:if test="${not empty signedInUser}">
                             <li class="nav-item">
                                 <c:url var="signOutPage" value="/user/signout" />
                                 <a class="nav-link" href="${signOutPage}">
-                                    <span>${signedInUser}</span> 로그아웃</a>
+                                    <span>${signedInUser}</span> 로그아웃
+                                </a>
                             </li>
                         </c:if>
-                        
                         <%-- 세션에 signedInUser 속성이 없으면(로그인되어 있지 않으면) --%>
-                        <c:if test="${empty signedInUser}"> <%-- UserSignInController.java의 signedInUser --%>
+                        <c:if test="${empty signedInUser}">
                             <li class="nav-item">
-                                <c:url var="signInPage" value="/user/signin" >
-                                <%-- contextPath를 자동으로 붙여주는 URL 생성 --%>
-                                	<c:param name="target" value="http://localhost:8081/jsp2/"></c:param>
-                                	<%-- URL에 파라미터를 전달 --%>
+                                <c:url var="signInPage" value="/user/signin">
+                                    <c:param name="target" value="${targetURL}" />
                                 </c:url>
-                                <a class="nav-link" href="${signInPage}">로그인</a>
+                                <a class="nav-link" href=${signInPage}>로그인</a>
                             </li>
                             <li class="nav-item">
                                 <c:url var="signUpPage" value="/user/signup" />
                                 <a class="nav-link" href="${signUpPage}">회원가입</a>
                             </li>
                         </c:if>
-                        
                     </ul>
                 </div>
             </div>

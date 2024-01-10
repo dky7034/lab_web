@@ -13,10 +13,11 @@
             crossorigin="anonymous">
 	</head>
 	<body>
-		<header class="my-2 p-4 bg-dark text-white text-center">
+    	<header class="my-2 p-4 bg-dark text-white text-center">
             <h1>포스트 목록 페이지</h1>
         </header>
         
+        <c:set var="targetURL" value="http://localhost:8081/jsp2/post/list" />
         <nav class="my-2 navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button"
@@ -40,7 +41,7 @@
                             <a class="nav-link" href="${postCreate}">새 포스트</a>
                         </li>
                         <%-- 세션에 signedInUser 속성이 있으면(로그인되어 있으면) --%>
-                        <c:if test="${not empty signedInUser}"> <%-- UserSignInController.java의 signedInUser --%>
+                        <c:if test="${not empty signedInUser}">
                             <li class="nav-item">
                                 <c:url var="signOutPage" value="/user/signout" />
                                 <a class="nav-link" href="${signOutPage}">
@@ -48,12 +49,12 @@
                                 </a>
                             </li>
                         </c:if>
-                        <%-- 세션에 signedInUser 속성이 없으면(로그인되어 있지 않으면) --%>
-                        <c:if test="${empty signedInUser}"> <%-- UserSignInController.java의 signedInUser --%>
+                        <%-- 세션에 signedInUser 속성이 없으면(로그인되이 있지 않으면) --%>
+                        <c:if test="${empty signedInUser}">
                             <li class="nav-item">
                                 <c:url var="signInPage" value="/user/signin">
-                                	<c:param name="target" value="http://localhost:8081/jsp2/post/list"></c:param>
-                                </c:url> 
+                                    <c:param name="target" value="${targetURL}" />
+                                </c:url>
                                 <a class="nav-link" href=${signInPage}>로그인</a>
                             </li>
                             <li class="nav-item">
@@ -91,8 +92,6 @@
                         </div>
                     </form>
                 </div>
-                
-                <%-- DB에서 전달받은 데이터(posts)를 출력하는 부분 --%>
                 <table class="table table-striped card-body my-2">
                     <thead>
                         <tr>
@@ -103,14 +102,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="p" items="${posts}"> <%-- PostListController에서 전달받은 posts --%>
+                        <c:forEach var="p" items="${posts}">
                         <tr>
                             <td>${p.id}</td>
                             <td>
-                                <c:url var="postDetails" value="/post/details"> 
-                                <%-- contextPath를 자동으로 붙여주는 URL 생성 --%>
+                                <c:url var="postDetails" value="/post/details">
                                     <c:param name="id" value="${p.id}" />
-                                    <%-- URL에 파라미터를 전달 --%>
                                 </c:url>
                                 <a href="${postDetails}">${p.title}</a>
                             </td>

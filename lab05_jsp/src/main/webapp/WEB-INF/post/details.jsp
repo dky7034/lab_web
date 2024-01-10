@@ -40,7 +40,7 @@
                             <a class="nav-link" href="${postCreate}">새 포스트</a>
                         </li>
                         <%-- 세션에 signedInUser 속성이 있으면(로그인되어 있으면) --%>
-                        <c:if test="${not empty signedInUser}"> <%-- UserSignInController.java의 signedInUser --%>
+                        <c:if test="${not empty signedInUser}">
                             <li class="nav-item">
                                 <c:url var="signOutPage" value="/user/signout" />
                                 <a class="nav-link" href="${signOutPage}">
@@ -49,7 +49,7 @@
                             </li>
                         </c:if>
                         <%-- 세션에 signedInUser 속성이 없으면(로그인되이 있지 않으면) --%>
-                        <c:if test="${empty signedInUser}"> <%-- UserSignInController.java의 signedInUser --%>
+                        <c:if test="${empty signedInUser}">
                             <li class="nav-item">
                                 <c:url var="signInPage" value="/user/signin" />
                                 <a class="nav-link" href=${signInPage}>로그인</a>
@@ -99,15 +99,16 @@
                     </div>
                 </form>
                 
-                <%-- 로그인한 사용자 아이디와 포스트 작성자 아이디가 같은 경우에만
-                	 수정 버튼을 보여줌. --%>
+                <%-- 로그인한 사용자 아이디와 포스트 작성자 아이디가 같은 경우에만 
+                     수정 버튼을 보여줌. 
+                --%>
                 <c:if test="${signedInUser eq post.author}">
-	                <div class="card-footer">
-	                    <c:url var="postModify" value="/post/modify">
-	                        <c:param name="id" value="${post.id}"></c:param>
-	                    </c:url>
-	                    <a class="btn btn-primary" href="${postModify}">수정</a>
-	                </div>
+                    <div class="card-footer">
+                        <c:url var="postModify" value="/post/modify">
+                            <c:param name="id" value="${post.id}"></c:param>
+                        </c:url>
+                        <a class="btn btn-primary" href="${postModify}">수정</a>
+                    </div>
                 </c:if>
             </div>
         </main>

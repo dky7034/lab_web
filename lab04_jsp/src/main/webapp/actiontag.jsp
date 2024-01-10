@@ -37,7 +37,7 @@
 		<h2>액션 태그 없이 객체 생성</h2>
 		<%
 		Contact c1 = new Contact(); // 기본 생성자 호출 -> 객체 생성.
-		c1.setId(100);
+		c1.setId(100); // setter 호출.
 		c1.setName("홍길동");
 		%>
 		<p class="card m-2">

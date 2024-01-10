@@ -18,7 +18,7 @@ import com.itwill.jsp1.model.Contact;
 // 브라우저는 URL을 이용해 웹 프로젝트를 서버에게 요청한다. 이때 URL은 다음과 같은 구성으로 이루어져 있다.
 // http:// IP주소:포트번호 / 프로젝트이름 / < 패키지이름 >.< 클래스이름 >
 // 그런데 클래스 이름이 길어지면 입력하기도 불편하고, 
-// 클래스 이름이 노출되며 어떤 기능을 하는지 쉽게 파악할 수 있기 때문에 보안에도 취약하다. 
+// 클래스 이름이 노출되며 어떤 기능을 하는지 쉽게 파악할 수 있기 때문에 보안에도 취약하다.
 // 그래서 이러한 문제점을 방지하기 위해 실제 서블릿 클래스 파일 이름을 대체할 수 있는 별명을 붙여주는 것이다.
 @WebServlet(name = "contactServlet", urlPatterns = { "/mvc" })
 public class ContactServlet extends HttpServlet {
