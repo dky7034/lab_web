@@ -1,0 +1,10 @@
+/.metadata/
+/Servers/
+*/.settings
+*/.classpath
+*/.project
+*/.gitignore
+*/build
+*/target
+*/.DS_Store
+.DS_Store
