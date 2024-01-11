@@ -28,5 +28,7 @@ public class Department {
     @ToString.Exclude
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
     private List<Employee> employees;
-
+    // DEPT 테이블이 가지고 있지 않은 컬럼. (없어도 상관 x)
+    // mappedBy = "department": EMP 테이블의 department 라는 "필드"에 의해 매핑되는 속성 설정.
+    //ㄴ Employee.java 에 존재하는 필드.
 }
