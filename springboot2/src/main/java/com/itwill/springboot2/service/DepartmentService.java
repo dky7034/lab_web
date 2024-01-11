@@ -24,9 +24,9 @@ public class DepartmentService {
     }
     
     public Department getDepartmentDetails(Integer id) {
-    	log.info("getDepartmentDetails(id={})", id);
-    	
-    	return deptDao.findById(id).orElse(null);
+        log.info("getDepartmentDetails(id={})", id);
+        
+        return deptDao.findById(id).orElse(null);
     }
     
 }

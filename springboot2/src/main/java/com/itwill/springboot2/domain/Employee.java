@@ -29,7 +29,7 @@ public class Employee {
 //    private Integer manager;
     
     @ToString.Exclude // toString 메서드에서 제외.
-    @ManyToOne(fetch = FetchType.LAZY) // FK 컬럼에 해당하는 엔터티 객체.
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MGR")
     private Employee manager;
     
@@ -43,6 +43,7 @@ public class Employee {
     
 //    private Integer deptno;
     
+    @ToString.Exclude // toString 메서드에서 제외
     @ManyToOne(fetch = FetchType.LAZY) // FK 컬럼에 해당하는 엔터티 객체.
     @JoinColumn(name = "deptno") // EMP 테이블에서 DEPT와 join할 수 있는 컬럼 이름.
     private Department department;
