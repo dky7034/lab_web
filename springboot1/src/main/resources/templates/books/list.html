@@ -1,45 +1,48 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>list</title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
-			rel="stylesheet" 
-			integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
-			crossorigin="anonymous" />
-	</head>
-	<body>
-		<!-- teplates/layout/fragments.html 에서 선언된 프래그먼트를 끼워넣기 -->
-		<header th:replace="~{/layout/fragments :: myHeader ('책 리스트 페이지')}"></header>
-		<div th:replace="~{/layout/fragments :: navigation}"></div>
-		
-		<div th:insert="/fragments/header :: header"></div>
-		<div th:insert="/fragments/nav :: nav"></div>
-		
-		
-		<h1>Book List</h1>
-		
-		<table>
-			<thead>
-				<tr>
-					<th>아이디</th>
-					<th>제목</th>
-					<th>저자</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="books : ${booksList}" th:object="${books}">
-					<td th:text="*{id}"></td>
-					<td th:text="*{title}"></td>
-					<!-- null 체크 (삼항연산자 사용, if도 사용 가능)--> 
-					<td th:text="*{author != null} ? |*{author.firstName} *{author.lastName}| : ''"></td>
-				</tr>
-			</tbody>
-		</table>
-		
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
-			integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
-			crossorigin="anonymous"></script>
-	</body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>list</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+	crossorigin="anonymous" />
+</head>
+<body>
+	<!-- teplates/layout/fragments.html 에서 선언된 프래그먼트를 끼워넣기 -->
+	<header th:replace="~{/layout/fragments :: myHeader ('책 리스트 페이지')}"></header>
+	<div th:replace="~{/layout/fragments :: navigation}"></div>
+
+	<div th:insert="/fragments/header :: header"></div>
+	<div th:insert="/fragments/nav :: nav"></div>
+
+
+	<h1>Book List</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>아이디</th>
+				<th>제목</th>
+				<th>저자</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="books : ${booksList}" th:object="${books}">
+				<td th:text="*{id}"></td>
+				<td th:text="*{title}"></td>
+				<!-- null 체크 (삼항연산자 사용, if도 사용 가능)-->
+				<td
+					th:text="*{author != null} ? |*{author.firstName} *{author.lastName}| : ''"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+</body>
 </html>

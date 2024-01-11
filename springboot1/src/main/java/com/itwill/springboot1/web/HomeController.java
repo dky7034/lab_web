@@ -44,7 +44,7 @@ public class HomeController {
 	// 질의 문자열(query string)의 요청 파라미터를 처리하는 컨트롤러 메서드:
 	@GetMapping("/book")
 	// @RequestParam -> 쿼리스트링의 요청 파라미터를 컨트롤러 메서드의 매개변수로 받아오기 위해 사용.
-	public void bookDetails(@RequestParam(name = "id") int id, Model model) { 
+	public void bookDetails(@RequestParam int id, Model model) { 
 		// 로그 레벨(log level): trace < debug < info < warning < error < fatal
 		// 스프링 부트에서 기본 로그 출력 레벨은 info 이상.
 		log.info("bookDetails(id={})", id);
@@ -58,7 +58,7 @@ public class HomeController {
 	// 경로 변수(path variable)을 처리하는 컨트롤러 메서드:
 	// 경로 변수: URL 주소가 변수처럼 변한다는 뜻.
 	@GetMapping("/book/{id}")
-	public String bookDetails2(@PathVariable(name = "id") int id, Model model) {
+	public String bookDetails2(@PathVariable int id, Model model) {
 		log.info("bookDetails2(id={})", id);
 		
 		Book book = Book.builder().id(id).title("BOOK_" + id).build();

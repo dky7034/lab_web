@@ -31,13 +31,14 @@ public class DepartmentController {
     }
     
     @GetMapping("/details/{id}")
-    public String depDetails(@PathVariable(name = "id") Integer id, Model model) {
-    	log.info("depDetails(id={})", id);
-    	
-    	Department dept = deptSvc.getDepartmentDetails(id);
-    	model.addAttribute("department", dept);
-    	
-    	return "department/details";
+    public String deptDetails(@PathVariable(name = "id") Integer id, Model model) {
+        log.info("deptDetails(id={})", id);
+        
+        Department dept = deptSvc.getDepartmentDetails(id);
+        model.addAttribute("department", dept);
+//        log.info("# of employees = {}", dept.getEmployees().size());
+        
+        return "department/details";
     }
     
 }
