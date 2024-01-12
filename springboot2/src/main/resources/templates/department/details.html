@@ -80,7 +80,8 @@
                         </td>
                         <td th:text="*{hiredate}"></td>
                         <td th:text="*{salary}"></td>
-                        <td th:text="*{commission}"></td>
+                        <td th:text="*{commission}"></td> 
+                        <!-- ㄴ 커미션은 참조해서 get하지 않으므로 null 체크를 하지 않아도 됨 -->
                         <td th:text="*{department.dname}"></td>
                     </tr>
                 </tbody>
