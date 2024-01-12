@@ -16,16 +16,11 @@ public class EmployeeRepositoryTest {
     private EmployeeRepository empDao;
     
     @Test
-    public void test1() {
+    public void test() {
         List<Employee> list = empDao.findAll();
         for (Employee e : list) {
             log.info(e.toString());
         }
-    }
-    
-    @Test
-    public void test2() {
-    	List<Employee> list = empDao.findById(null)
     }
 
 }
