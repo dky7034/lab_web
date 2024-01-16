@@ -2,7 +2,7 @@
 
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 마이바티스(MyBatis) 프레임워크에서 사용하는 SQL 매퍼 파일 -->
 

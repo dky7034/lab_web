@@ -2,14 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{/layout/fragments :: myhead}"></head>
 <body>
-	<div class="container-fluid">
+
+<div class="container-fluid">
     
-    	<header th:replace="~{/layout/fragments :: myheader ('Home')}"></header>
+    <header th:replace="~{/layout/fragments :: myheader ('Home')}"></header>
     
-    	<nav th:replace="~{/layout/fragments :: navigation}"></nav>
+    <nav th:replace="~{/layout/fragments :: navigation}"></nav>
     
-	</div>
+    <main></main>
     
+</div>
+
 <script th:replace="~{/layout/fragments :: bootstrap_js}"></script>
+
 </body>
 </html>

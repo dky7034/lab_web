@@ -22,7 +22,7 @@ public class EmployeeController {
     
     private final EmployeeService empSvc;
     
-    @GetMapping("/list")
+    @GetMapping("/list") // /employee/list mapping.
     public void empList(Model model) {
         log.info("empList()");
         
@@ -37,7 +37,7 @@ public class EmployeeController {
         Employee emp = empSvc.getEmployeeDetails(id);
         model.addAttribute("employee", emp);
         
-        return "employee/details";
+        return "employee/details"; // /employee/details mapping.
     }
 
 }
