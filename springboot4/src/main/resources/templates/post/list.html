@@ -24,7 +24,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="post : ${page}" th:object="${post}">
+                        <tr th:each="post : ${page}" th:object="${post}"> <!-- model.addAttribute("page", data); from postController -->
                             <td th:text="*{id}"></td>
                             <td>
                                 <a th:href="@{/post/details(id=*{id})}"
