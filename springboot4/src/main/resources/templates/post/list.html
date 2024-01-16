@@ -12,7 +12,28 @@
     
     <main class="my-2">
         <div class="my-2 card">
-            <div class="card-header"></div>
+            <div class="card-header">
+            	<form method="get" th:action="@{/post/search}">
+            		<div class="row"> <!-- bootstrap: 한 페이지의 하나의 row 에서 12개의 컬럼 사용. -->
+            			<div class="col-2"> <!-- col-2: 2개의 컬럼을 사용하겠다. 비율이 2:8:2가 되는 것. -->
+            				<select name="category" class="form-control">
+            					<!-- 검색 카테고리(t, c, tc, a): url에 표시됨. -->
+            					<option value="t">제목</option>
+            					<option value="c">내용</option>
+            					<option value="tc">제목 + 내용</option>
+            					<option value="a">작성자</option>
+            				</select>
+            			</div> 
+            			<div class="col-8">
+            				<!-- 검색 키워드: url에 표시됨. -->
+            				<input type="text" class="form-control" name="keyword" required />
+            			</div>
+            			<div class="col-2">
+            				<input type="submit" class="form-control btn btn-outline-secondary" value="검색" />
+            			</div>
+            		</div>
+            	</form>
+            </div>
             <div class="card-body">
                 <table class="table table-hover">
                     <thead>
@@ -27,6 +48,11 @@
                         <tr th:each="post : ${page}" th:object="${post}"> <!-- model.addAttribute("page", data); from postController -->
                             <td th:text="*{id}"></td>
                             <td>
+                            	<!-- thymeleaf에서 경로 변수(path variable)를 전달하는 URL 작성:
+                            		@{/post/details/{id}(id=*{id})} -> id(pathvariable)에 들어갈 값 설정하여 넣어줌 -->
+                            	<!-- <a th:href="@{/post/details/{id}(id=*{id})}" th:text="*{title}"></a> -->
+                            	<!-- thymeleaf에서 질의문자열(query string)의
+                            	요청 파라미터(request parameter)를 전달하는 URL 작성: -->
                                 <a th:href="@{/post/details(id=*{id})}"
                                     th:text="*{title}"></a>
                             </td>

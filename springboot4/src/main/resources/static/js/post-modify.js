@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnDelete.addEventListener('click', (e) => {
         const check = confirm('정말로 삭제할까요?');
         if (check) {
-            const id = document.querySelector('input#id').value;
+            const id = document.querySelector('input#id').value; // 삭제할 post 번호(id)
             location.href=`delete?id=${id}`;
         }
     });

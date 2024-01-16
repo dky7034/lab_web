@@ -17,6 +17,8 @@
                         <label for="title" class="form-label">제목</label>
                         <input type="text" class="form-control"
                             id="title" name="title" autofocus required />
+                            <!-- for와 id값은 같아야 함! for와 id를 매칭. 
+                            	id는 요소를 찾기 위해 사용되고, form 전송을 위해서는 name을 사용함! -->
                     </div>
                     <div class="my-2">
                         <label for="content" class="form-label">내용</label>
@@ -32,6 +34,7 @@
                         <button type="submit" 
                             class="btn btn-success form-control">작성완료</button>
                     </div>
+                    <!-- form 안에 있어야 버튼이 제출됨!!! -->
                 </form>
             </div>
             <div class="card-footer"></div>

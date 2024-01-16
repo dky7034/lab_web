@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.springboot4.domain.Post;
 import com.itwill.springboot4.dto.PostCreateRequestDto;
+import com.itwill.springboot4.dto.PostSearchRequestDto;
 import com.itwill.springboot4.dto.PostUpdateRequestDto;
 import com.itwill.springboot4.service.PostService;
 
@@ -74,6 +75,15 @@ public class PostController {
         postService.update(dto);
         
         return "redirect:/post/list";
+    }
+    
+    @GetMapping("/search")
+    public void search(@ModelAttribute PostSearchRequestDto dto, Model model) {
+        log.info("search(dto={})", dto);
+        
+        // Service 메서드 호출 -> 검색 결과 -> Model -> View
+        Page<Post> data = postService.search(dto);
+        model.addAttribute("page", data);
     }
     
 }

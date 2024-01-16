@@ -12,6 +12,8 @@
         <div class="my-2 card">
             <div class="card-header"></div>
             <div class="card-body">
+            	<!-- object: attribute에 post가 실려 있음! 
+            		 model.addAttribute("post", entity); -->
                 <form id="updateForm" th:object="${post}" 
                     method="post" th:action="@{/post/update}">
                     <div class="my-2 d-none">
@@ -20,7 +22,7 @@
                     </div>
                     <div class="my-2">
                         <label for="title" class="form-label">제목</label>
-                        <input type="text" class="form-control"
+                        <input type="text" class="form-control" 
                             id="title" name="title" th:value="*{title}" autofocus />
                     </div>
                     <div class="my-2">
@@ -37,6 +39,7 @@
                     <button id="btnDelete" class="mx-2 btn btn-danger">삭제</button>
                     <button id="btnUpdate" class="mr-2 btn btn-primary">업데이트</button>
                 </div>
+                <!-- form 밖에 있는 button: JavaScript 사용. -->
             </div>
             <div class="card-footer"></div>
         </div>

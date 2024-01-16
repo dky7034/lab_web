@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -59,12 +63,23 @@ public class PostRepositoryTest {
 		
 	}
 	
-	@Test
+//	@Test
 	public void testDelete() {
 		
 		postDao.deleteById(1L);
 		// id로 select 쿼리를 실행한 후, 엔터티가 존재할 때 delete 쿼리를 실행함.
 		
+	}
+	
+	@Test
+	public void testSearch() {
+		Pageable pageable = PageRequest.of(2, 5, Sort.by("id").descending());
+		
+//		Page<Post> list = postDao.findByTitleContainingIgnoreCase("tES", pageable); // 제목 검색
+		
+		Page<Post> list = postDao.findByTitleOrContent("tES", pageable); // 제목 또는 내용 검색
+		
+		list.forEach((x) -> log.info(x.toString()));
 	}
 	
 }
