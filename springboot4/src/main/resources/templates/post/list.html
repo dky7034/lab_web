@@ -45,12 +45,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="post : ${page}" th:object="${post}"> <!-- model.addAttribute("page", data); from postController -->
+                        <tr th:each="post : ${page}" th:object="${post}"> 
+                        <!-- ${page} 위치: model.addAttribute("page", data); from postController -->
                             <td th:text="*{id}"></td>
                             <td>
                             	<!-- thymeleaf에서 경로 변수(path variable)를 전달하는 URL 작성:
-                            		@{/post/details/{id}(id=*{id})} -> id(pathvariable)에 들어갈 값 설정하여 넣어줌 -->
+                            	@{/post/details/{id}(id=*{id})} -> id(pathvariable)에 들어갈 값 설정하여 넣어줌 -->
                             	<!-- <a th:href="@{/post/details/{id}(id=*{id})}" th:text="*{title}"></a> -->
+                            	
                             	<!-- thymeleaf에서 질의문자열(query string)의
                             	요청 파라미터(request parameter)를 전달하는 URL 작성: -->
                                 <a th:href="@{/post/details(id=*{id})}"
