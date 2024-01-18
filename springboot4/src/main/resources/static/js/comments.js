@@ -86,7 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			//-> undefined: 초기화되지 않은 변수.
 			page = 0; // 0페이지를 보겠다는 것.
 		}
+		
 		const postId = document.querySelector('input#id').value;
+		
 		// Ajax 요청을 보낼 주소. path variable에 쿼리스트링 추가...
 		// path variable - 댓글이 달린 포스트 아이디.
 		// request parameter - 댓글 페이지.
@@ -94,7 +96,20 @@ document.addEventListener('DOMContentLoaded', () => {
 		try {
 			const response = await axios.get(uri);
 			console.log(response);
-			makeCommentElements(response.data); // response의 data를 전달하여 댓글 목록 html 코드를 작성.
+			curPage = response.data.number; // Page 객체에서 현재 페이지 숫자를 저장.
+			totalPages = response.data.totalPages; // Page 객체에서 전체 페이지 개수를 저장.
+			
+			const divBtnMoreCmt = document.querySelector('div#divBtnMoreCmt'); // [더보기] 버튼이 있는 div.
+			if (curPage + 1 < totalPages) {  // 현재 페이지 번호가 전체 페이지 개수보다 작을 때...
+			//-> curPage는 배열의 인덱스처럼 0부터 시작하고,
+			//-> totalPages는 페이지의 총 개수를 나타내므로 curPag + 1을 해야 함.
+				// 다음 페이지가 있을 때...
+				divBtnMoreCmt.classList.remove('d-none'); // [더보기] 버튼을 보여줌.
+			} else { // 다음 페이지가 없을 때...
+				divBtnMoreCmt.classList.add('d-none'); // [더보기] 버튼을 숨김.
+			}
+			
+			makeCommentElements(response.data.content); // 댓글 목록 html 코드를 작성.
 		} catch (error) {
 			console.log(error);
 		}
@@ -129,19 +144,36 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 		}
 		
-		cmtDiv.innerHTML = htmlStr; // html 코드를 div에 삽입.
+		if (curPage === 0) {
+			cmtDiv.innerHTML = htmlStr; // div를 비우고 html 코드를 div에 삽입.
+		} else {
+			cmtDiv.innerHTML += htmlStr; // 기존 div 내용 뒤에 html 코드를 추가.
+		}
 		
 		// 모든 btnDeleteCmt, btnUpdateCmt를 찾아서 클릭 이벤트 리스너를 등록.
 		// 1. 모든 삭제 버튼을 찾아서 클릭 이벤트 리스너를 등록:
 		const btnDeletes = document.querySelectorAll('button.btnDeleteCmt');
-		for (let btn of btnDeletes) {
-			btn.addEventListener('click', deleteComment);
-		}
+		btnDeletes.forEach((btn) => {
+			// ***** 리스너가 중복으로 등록되는 문제 해결... *****
+			btn.removeEventListener('click', deleteComment); // 이미 등록된 리스너가 있으면 제거.
+			btn.addEventListener('click', deleteComment); // 리스너를 새로 등록.
+		});
+		
+		//for (let btn of btnDeletes) {
+		//	btn.addEventListener('click', deleteComment);
+		//}
+		
 		// 2. 모든 수정 버튼을 찾아서 클릭 이벤트 리스너를 등록:
 		const btnUpdates = document.querySelectorAll('button.btnUpdateCmt');
-		for (let btn of btnUpdates) {
-			btn.addEventListener('click', updateComment);
-		}
+		btnUpdates.forEach((btn) => {
+			// ***** 리스너가 중복으로 등록되는 문제 해결... *****
+			btn.removeEventListener('click', updateComment); // 이미 등록된 리스너가 있으면 제거.
+			btn.addEventListener('click', updateComment); // 리스너를 새로 등록.
+		});
+		
+		//for (let btn of btnUpdates) {
+		//	btn.addEventListener('click', updateComment);
+		//}
 		
 		// 모든 btnDeleteCmt, btnUpdateCmt를 찾아서 클릭 이벤트 리스너를 등록.
 		// 1. 모든 삭제 버튼을 찾아서 클릭 이벤트 리스너를 등록:
@@ -198,7 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		const id = e.target.getAttribute('data-id'); // 댓글 아이디.
 		// 수정할 댓글 내용
 		const text = document.querySelector(`textarea.cmtText[data-id="${id}"]`).value; // 댓글 내용
-		// const cText = e.target.getAttribute('data-text');
 		
 		console.log("====================")
 		console.log('id=${id}, text=${text}');
