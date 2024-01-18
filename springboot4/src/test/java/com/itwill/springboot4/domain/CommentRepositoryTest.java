@@ -35,7 +35,8 @@ public class CommentRepositoryTest {
 	@Test
 	public void testReadyByPostId() {
 		Sort sort = Sort.by("id").descending(); // id(PK) 컬럼 내림차순 정렬
-		List<Comment> list = commentDao.findByPostId(3L, sort);
+		Post post = postDao.findById(18L).orElseThrow();
+		List<Comment> list = commentDao.findByPost(post, sort);
 		
 		list.forEach((x) -> log.info(x.toString()));
 	}

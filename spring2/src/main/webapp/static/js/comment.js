@@ -203,12 +203,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		// Ajax 요청을 보냄.
 		const uri = `../api/comment/${id}`;
 		axios.delete(uri) // DELETE 방식의 Ajax 요청을 보냄.
-			.then((response) => {  //-> 성공 콜백. 응답(response)을 처리하는 콜백 등록.
+			.then((response) => { //-> 성공 콜백. 응답(response)을 처리하는 콜백 등록.
 				console.log(response);
 				
 				if (response.data === 1) {
 					alert('댓글 삭제 성공!');
-					getAllComments();// 댓글 목록 갱신.
+					getAllComments(); // 댓글 목록 갱신.
 				}
 				
 			})

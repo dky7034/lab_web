@@ -40,4 +40,9 @@ public class Comment extends BaseTimeEntity { //-> 생성 시간, 수정 시간�
 	@Basic(optional = false)
 	private String writer;
 	
+	public Comment update(String text) {
+		this.text = text;
+		return this;
+	}
+	
 }

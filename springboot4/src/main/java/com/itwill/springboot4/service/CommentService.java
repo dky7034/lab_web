@@ -1,5 +1,8 @@
 package com.itwill.springboot4.service;
 
+import java.util.List;
+
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.itwill.springboot4.domain.Comment;
@@ -7,7 +10,9 @@ import com.itwill.springboot4.domain.CommentRepository;
 import com.itwill.springboot4.domain.Post;
 import com.itwill.springboot4.domain.PostRepository;
 import com.itwill.springboot4.dto.CommentRegisterRequestDto;
+import com.itwill.springboot4.dto.CommentUpdateRequestDto;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,5 +44,31 @@ public class CommentService {
 		return entity;
 	}
 	
+	public List<Comment> getCommentList(Long postId) {
+		log.info("getCommentList(postId={}", postId);
+		
+		// 댓글이 달려 있는 포스트 엔터티를 찾음.
+		Post post = postDao.findById(postId).orElseThrow();
+		
+		// 포스트의 댓글 목록을 검색.
+		List<Comment> list = commentDao.findByPost(post, Sort.by("id").descending());
+		log.info("댓글 개수 = {}", list.size());
+		
+		return list;
+	}
+
+	public void deleteCommentById(Long id) {
+		log.info("deleteCommentById(id={})", id);
+		
+		commentDao.deleteById(id);
+	}
+	
+	@Transactional
+	public void updateCommentById(CommentUpdateRequestDto dto) {
+		log.info("updateCommentById(dto={})", dto);
+		
+		Comment entity = commentDao.findById(dto.getId()).orElseThrow();
+		entity.update(dto.getText());
+	}
 	
 }
