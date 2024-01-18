@@ -69,6 +69,7 @@ public class CommentService {
 		
 		Comment entity = commentDao.findById(dto.getId()).orElseThrow();
 		entity.update(dto.getText());
+//		commentDao.save(entity); //-> 필요X: @Transactional에 의해 변경된 엔터티는 자동으로 저장됨...
 	}
 	
 }

@@ -40,9 +40,10 @@ public class Comment extends BaseTimeEntity { //-> 생성 시간, 수정 시간�
 	@Basic(optional = false)
 	private String writer;
 	
-	public Comment update(String text) {
-		this.text = text;
-		return this;
+	// 댓글 내용만 변경할 수 있는 메서드를 생성.
+	public Comment update(String text) { //-> 아규먼트로 text를 전달받아서...
+		this.text = text; //-> Comment 객체의 text를 전달받은 text로 새로 저장함.
+		return this; //-> 새로운 값이 저장된 Comment 객체를 리턴.
 	}
 	
 }

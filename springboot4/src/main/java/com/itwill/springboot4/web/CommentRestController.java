@@ -51,13 +51,13 @@ public class CommentRestController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteComment(@PathVariable(name = "id") Long id) {
+	public ResponseEntity<Long> deleteComment(@PathVariable(name = "id") Long id) {
 		log.info("deleteComment(id={})", id);
 		
 		// 서비스 메서드 호출 -> 포스트 아이디에 달려 있는 특정 댓글 삭제.
 		commentSvc.deleteCommentById(id);
 		
-		return ResponseEntity.ok(null);
+		return ResponseEntity.ok(id); // 삭제한 댓글의 아이디를 응답으로 보냄.
 	}
 	
 	@PutMapping("/{id}")

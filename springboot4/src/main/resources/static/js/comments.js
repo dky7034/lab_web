@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		// 수정할 댓글 아이디
 		const id = e.target.getAttribute('data-id'); // 댓글 아이디.
 		// 수정할 댓글 내용
-		const text = documetn.querySelector(`textarea.cmtText[data-id="${id}"]`).value; // 댓글 내용
+		const text = document.querySelector(`textarea.cmtText[data-id="${id}"]`).value; // 댓글 내용
 		// const cText = e.target.getAttribute('data-text');
 		
 		console.log("====================")
