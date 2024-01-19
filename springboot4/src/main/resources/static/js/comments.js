@@ -228,11 +228,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log("e.target =", e.target); // e.target: 이벤트가 발생한 타겟. 여기서는 수정 버튼.
 		// 수정할 댓글 아이디
 		const id = e.target.getAttribute('data-id'); // 댓글 아이디.
-		// 수정할 댓글 내용
+		// 수정할 댓글 내용 - 이 코드가 뭔지 잘 모르겠음... TODO: 코드 공부!
 		const text = document.querySelector(`textarea.cmtText[data-id="${id}"]`).value; // 댓글 내용
 		
 		console.log("====================")
-		console.log('id=${id}, text=${text}');
+		console.log(`id=${id}, text=${text}`);
 		console.log("====================")
 		
 		if (text.trim() === '') { 

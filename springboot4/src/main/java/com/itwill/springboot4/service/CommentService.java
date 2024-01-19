@@ -70,7 +70,7 @@ public class CommentService {
 		
 		return data;
 	}
-
+	
 	public void deleteCommentById(Long id) {
 		log.info("deleteCommentById(id={})", id);
 		
@@ -78,12 +78,16 @@ public class CommentService {
 	}
 	
 	@Transactional
-	public void updateCommentById(CommentUpdateRequestDto dto) {
-		log.info("updateCommentById(dto={})", dto);
+	// @Transactional 어노테이션이 사용된 메서드 내에서 데이터베이스에 대한 변경 작업이 수행되면, 
+	// 해당 변경 사항은 트랜잭션이 커밋될 때 자동으로 데이터베이스에 반영됨. 
+	// 이는 commentDao.save(entity)와 같이 명시적으로 save 메서드를 호출하지 않아도, 
+	// @Transactional 어노테이션에 의해 엔터티의 변경이 자동으로 데이터베이스에 저장되는 것을 의미함.
+	public void updateCommentById(Long id, CommentUpdateRequestDto dto) {
+		log.info("updateCommentById(id={}, dto={})", id, dto);
 		
-		Comment entity = commentDao.findById(dto.getId()).orElseThrow();
+		Comment entity = commentDao.findById(id).orElseThrow();
 		entity.update(dto.getText());
-//		commentDao.save(entity); //-> 필요X: @Transactional에 의해 변경된 엔터티는 자동으로 저장됨...
+		// commentDao.save(entity); //-> 필요X: @Transactional 어노테이션에 의해 변경된 엔터티는 자동으로 DB에 저장됨.
 	}
 	
 }
