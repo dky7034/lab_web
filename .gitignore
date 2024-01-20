@@ -6,6 +6,7 @@
 */.gitignore
 */build
 */target
+<<<<<<< HEAD
 */.DS_Store
 
 # Created by https://www.toptal.com/developers/gitignore/api/java,eclipse
@@ -105,3 +106,11 @@ replay_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse
 
+=======
+<<<<<<< HEAD
+*/target/**
+*/.DS_Store
+=======
+*/.DS_Store.DS_Store
+>>>>>>> branch 'main' of https://github.com/dky7034/lab_web.git
+>>>>>>> 31462bb7f8d3d20b7208d813aebb23fb25c6b61b
