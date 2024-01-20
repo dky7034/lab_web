@@ -81,7 +81,7 @@
                         <!-- 내 댓글 등록 -->
                         <div class="row my-2">
                             <div class="col-10">
-                                <!-- 댓글 입력 창 -->
+                                <!-- 댓글 입력창 -->
                                 <textarea class="form-control"
                                     id="ctext" placeholder="댓글 입력"></textarea>
                                 <!-- 댓글 작성자 아이디 - 로그인 사용자 아이디로 설정 -->

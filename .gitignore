@@ -6,5 +6,9 @@
 */.gitignore
 */build
 */target
+<<<<<<< HEAD
 */target/**
 */.DS_Store
+=======
+*/.DS_Store.DS_Store
+>>>>>>> branch 'main' of https://github.com/dky7034/lab_web.git

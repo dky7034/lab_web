@@ -18,7 +18,7 @@
                     <th>LOCATION</th>
                 </tr>
             </thead>
-            <tbody >
+            <tbody>
                 <tr th:each="dept : ${page}" th:object="${dept}">
                     <td>
                         <a th:href="@{/department/details/} + *{id}"

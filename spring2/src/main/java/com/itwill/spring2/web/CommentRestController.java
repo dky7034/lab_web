@@ -5,16 +5,13 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.itwill.spring2.domain.Comment;
 import com.itwill.spring2.dto.comment.CommentListItemDto;
 import com.itwill.spring2.dto.comment.CommentRegisterDto;
 import com.itwill.spring2.dto.comment.CommentUpdateDto;
@@ -91,9 +88,6 @@ public class CommentRestController {
     }
     
     @GetMapping("/{id}")
-    //-> {id}는 경로 변수로, 삭제할 리소스의 고유 식별자를 나타냄.
-    //-> 예를 들어, /users/{id} 경로에 DELETE 요청이 오면, 
-    //-> @GetMapping("/{id}") 어노테이션이 지정된 메서드가 호출되어 해당 ID의 사용자를 삭제할 수 있음.
     public ResponseEntity<CommentListItemDto> getCommentById(@PathVariable long id) {
     	log.debug("getCommentById(id={})", id);
     	
@@ -105,9 +99,6 @@ public class CommentRestController {
     }
     
     @PutMapping("/{id}")
-    //-> {id}는 경로 변수로, 삭제할 리소스의 고유 식별자를 나타냄.
-    //-> 예를 들어, /users/{id} 경로에 DELETE 요청이 오면, 
-    //-> @PutMapping("/{id}") 어노테이션이 지정된 메서드가 호출되어 해당 ID의 사용자를 삭제할 수 있음.
     public ResponseEntity<Integer> updateCommentById(@PathVariable long id, 
     		@RequestBody CommentUpdateDto dto) {
     	log.debug("updateCommentById(id={}, dto={})", id, dto);
