@@ -38,13 +38,13 @@ public class PostController {
         log.info(model.toString());
     }
     
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER')") // USER 권한을 가지고 있는 사람들만 이 페이지로의 접근을 허용하겠다...
     @GetMapping("/create")
     public void create() {
         log.info("create() GET");
     }
 
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER')") // @PreAuthorize("authenticated()"): ID, PW만으로 페이지 접근 허용...
     @PostMapping("/create")
     public String create(@ModelAttribute PostCreateRequestDto dto) {
         log.info("create(dto={})", dto);
