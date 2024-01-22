@@ -94,7 +94,7 @@ public class SecurityConfig {
 		);
 		*/
 		
-		return http.build();
+		return http.build(); // 스프링 시큐리티 필터 체인 객체를 생성하고 리턴.
 	}
 	
 }

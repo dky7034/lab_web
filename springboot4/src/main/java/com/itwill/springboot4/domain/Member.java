@@ -40,7 +40,7 @@ public class Member extends BaseTimeEntity {
 	@EqualsAndHashCode.Include // username 필드 만으로 equals 비교를 하기 위해서. TODO: 이건 뭘까...?
 	@NaturalId // unique
 	@Basic(optional = false) // not null
-	@Column(updatable = false) // update 쿼리의 SET 절에서 제외. (업데이트를 하지 않겠다)
+	@Column(updatable = false) // update 쿼리의 SET 절에서 제외. (업데이트를 하지 않겠다는 뜻)
 	private String username;
 	
 	@Basic(optional = false)

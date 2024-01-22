@@ -47,8 +47,7 @@
                     </th:block>
                     
                     <th:block sec:authorize="isAuthenticated()">
-	                    <a class="nav-link" 
-	                        th:href="@{/logout}">
+	                    <a class="nav-link" th:href="@{/logout}">
 	                        <span class="text-secondary" sec:authentication="name"></span>
 	                        <span>나가기</span>
 	                    </a>
