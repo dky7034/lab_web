@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/layout/fragments :: myhead}"></head>
+<body>
+	<div class="container-fluid"> <!-- fluid: 반응형 웹을 만들기 위해 사용. -->
+		<header th:replace="~{/layout/fragments :: myheader ('로그인 페이지')}"></header>
+		
+		<main class="my-2 card card-body">
+        	<form method="post">
+        		<!-- 아래 조건식을 만족해야 div 생성됨. -->
+        		<div class="my-2 text-danger" th:if="${param.error}"> 
+        			아이디와 비밀번호를 확인하세요.
+        		</div>
+        		<div>
+        			<input type="text" class="form-control" 
+        				name="username" placeholder="username" autofocus />
+        				<!-- name="username": spring security에서 사용하는 이름
+        					 컨트롤러 사용X , spring security에서 처리함. -->
+        				<!-- TODO: username이 뭔지 자세히 알기... -->
+        		</div>
+        		<div class="my-2">
+        			<input type="password" class="form-control"
+        				name="password" placeholder="password" required />
+        		</div>
+        		<div>
+        			<input type="submit" class="form-control btn btn-success"
+        				value="로그인" />
+        		</div>
+        	</form>
+        	<div class="my-2">
+        		<a th:href="@{/member/signup}" class="form-control btn btn-primary">회원가입</a>
+        	</div>
+        </main>
+		
+	</div>
+	
+<script th:replace="~{/layout/fragments :: bootstrap_js}"></script>
+</body>
+</html>

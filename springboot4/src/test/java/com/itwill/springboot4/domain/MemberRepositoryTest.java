@@ -58,7 +58,8 @@ public class MemberRepositoryTest {
 	
 	@Test
 	public void testFindByUsername() {
-		Optional<Member> m = memberDao.findByUsername("admin");
+//		Optional<Member> m = memberDao.findByUsername("admin");
+		Optional<Member> m = memberDao.findByUsername("admin_sub");
 		log.info("************************");
 		log.info("{}, {}", m, m.get().getRoles());
 		log.info("************************");

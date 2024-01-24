@@ -28,7 +28,9 @@
                     <div class="my-2">
                         <label for="author" class="form-label">작성자</label>
                         <input type="text" class="form-control"
-                            id="author" name="author" th:value="'admin'" readonly />
+                            id="author" name="author" th:value="${#authentication.name}" readonly />
+                            <!-- thymeleaf-extras-springsecurity6에 있는 #authentication.name 유틸리티 클래스 이용. 
+                            	 #authentication.name 유틸리티 클래스: 인증된 사용자의 username -->
                     </div>
                     <div class="my-2">
                         <button type="submit" 
